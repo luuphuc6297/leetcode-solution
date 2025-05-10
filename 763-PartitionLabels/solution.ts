@@ -36,6 +36,8 @@ export function partitionLabels(s: string): number[] {
     return result
 }
 
+
+
 // Example test cases
 const example1 = 'ababcbacadefegdehijhklij'
 console.log(partitionLabels(example1)) // Expected: [9, 7, 8]
