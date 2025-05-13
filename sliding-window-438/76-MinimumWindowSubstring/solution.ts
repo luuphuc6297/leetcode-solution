@@ -30,30 +30,24 @@ export function minWindow(s: string, t: string): string {
     
     // Slide the window
     while (right < s.length) {
-        // Expand the window
         const rightChar = s[right];
         windowMap.set(rightChar, (windowMap.get(rightChar) || 0) + 1);
         
-        // Check if this character contributes to a desired character count
         if (targetMap.has(rightChar) && windowMap.get(rightChar) === targetMap.get(rightChar)) {
             formed++;
         }
         
-        // Try to contract the window
         while (left <= right && formed === required) {
             const leftChar = s[left];
             
-            // Update the result if this window is smaller
             const windowLen = right - left + 1;
             if (windowLen < minLen) {
                 minLen = windowLen;
                 resultStart = left;
             }
             
-            // Remove the leftmost character
             windowMap.set(leftChar, windowMap.get(leftChar)! - 1);
             
-            // Check if the removal breaks the required condition
             if (targetMap.has(leftChar) && windowMap.get(leftChar)! < targetMap.get(leftChar)!) {
                 formed--;
             }

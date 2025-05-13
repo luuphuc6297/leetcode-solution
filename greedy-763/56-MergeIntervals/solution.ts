@@ -7,35 +7,40 @@
  */
 
 export function merge(intervals: number[][]): number[][] {
-    if (intervals.length <= 1) return intervals;
-    
-    // Sort intervals by start time
-    intervals.sort((a, b) => a[0] - b[0]);
-    
-    const result: number[][] = [];
-    let current = intervals[0];
-    
+    if (intervals.length <= 1) return intervals
+
+    intervals.sort((a, b) => {
+        return a[0] - b[0]
+    })
+
+    const result: number[][] = []
+    let current = intervals[0]
+
     for (let i = 1; i < intervals.length; i++) {
-        // Check if current interval overlaps with the next
         if (current[1] >= intervals[i][0]) {
-            // Merge the intervals
-            current[1] = Math.max(current[1], intervals[i][1]);
+            current[1] = Math.max(current[1], intervals[i][1])
         } else {
-            // No overlap, add current to result and move to next
-            result.push(current);
-            current = intervals[i];
+            result.push(current)
+            current = intervals[i]
         }
     }
-    
-    // Add the last interval
-    result.push(current);
-    
-    return result;
+
+    result.push(current)
+
+    return result
 }
 
 // Example test cases
-const example1 = [[1,3],[2,6],[8,10],[15,18]];
-console.log(merge(example1)); // Expected: [[1,6],[8,10],[15,18]]
+const example1 = [
+    [1, 3],
+    [2, 6],
+    [8, 10],
+    [15, 18],
+]
+console.log(merge(example1)) // Expected: [[1,6],[8,10],[15,18]]
 
-const example2 = [[1,4],[4,5]];
-console.log(merge(example2)); // Expected: [[1,5]] 
+const example2 = [
+    [1, 4],
+    [4, 5],
+]
+console.log(merge(example2)) // Expected: [[1,5]]

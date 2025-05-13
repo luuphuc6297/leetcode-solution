@@ -10,7 +10,6 @@
  */
 
 export function subarraysWithKDistinct(nums: number[], k: number): number {
-    // Helper function that counts subarrays with at most K distinct integers
     const atMostK = (nums: number[], k: number): number => {
         const count = new Map<number, number>();
         let result = 0;
@@ -28,7 +27,6 @@ export function subarraysWithKDistinct(nums: number[], k: number): number {
                 if (count.get(leftVal) === 0) {
                     count.delete(leftVal);
                 }
-                
                 left++;
             }
             

@@ -15,8 +15,7 @@ export function partitionLabels(s: string): number[] {
     const lastIndex = new Array(26).fill(-1)
 
     for (let i = 0; i < s.length; i++) {
-        const charCode = s.charCodeAt(i) - 'a'.charCodeAt(0)
-        lastIndex[charCode] = i
+        lastIndex[s.charCodeAt(i) - 97] = i
     }
 
     const result: number[] = []
@@ -24,8 +23,7 @@ export function partitionLabels(s: string): number[] {
     let end = 0
 
     for (let i = 0; i < s.length; i++) {
-        const charCode = s.charCodeAt(i) - 'a'.charCodeAt(0)
-        end = Math.max(end, lastIndex[charCode])
+        end = Math.max(end, lastIndex[s.charCodeAt(i) - 97])
 
         if (i === end) {
             result.push(end - start + 1)
